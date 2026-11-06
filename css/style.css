@@ -627,10 +627,13 @@ section { position: relative; }
    RESPONSIVO
    ========================================================= */
 
-/* Notebook: reduz a escala da página toda (fontes, blocos e espaçamentos) */
-@media (min-width: 1025px) and (max-width: 1700px) { :root { --z: .9; } }
-@media (min-width: 1025px) and (max-width: 1500px) { :root { --z: .82; } }
-@media (min-width: 1025px) and (max-width: 1300px) { :root { --z: .76; } }
+/* Notebook: reduz a escala da página toda (fontes, blocos e espaçamentos)
+   ~ largura/1920, com piso para manter a legibilidade */
+@media (min-width: 1025px) and (max-width: 1919px) { :root { --z: .92; } }
+@media (min-width: 1025px) and (max-width: 1800px) { :root { --z: .86; } }
+@media (min-width: 1025px) and (max-width: 1650px) { :root { --z: .8; } }
+@media (min-width: 1025px) and (max-width: 1500px) { :root { --z: .74; } }
+@media (min-width: 1025px) and (max-width: 1350px) { :root { --z: .68; } }
 @media (min-width: 1025px) { .header, .page, .footer { zoom: var(--z); } }
 
 /* Notebook (até 1440) — header mais compacto */
