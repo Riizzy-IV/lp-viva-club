@@ -57,7 +57,7 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
 ol, ul { list-style: none; }
 b, strong { font-weight: 700; }
 
-.page { position: relative; overflow-x: clip; isolation: isolate; }
+.page { position: relative; overflow: clip; isolation: isolate; }
 .container { width: min(var(--container), 100% - var(--gutter) * 2); margin-inline: auto; position: relative; }
 
 /* Camadas (mesma ordem do Figma) */
