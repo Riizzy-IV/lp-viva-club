@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initImplantacao();
   initGaleria();
   initPlantas();
-  initGuia();
   initLightbox();
   initVideo();
   initForm();
@@ -185,45 +184,6 @@ function initGaleria() {
     const item = GALERIA[card.dataset.index];
     openLightbox(item.src, item.title);
   });
-}
-
-/* ---------- Guia do bairro ---------- */
-/* Mesmos dados do Guia do Bairro do app TouchATTA (viva-club): [lugar, minutos de carro] */
-const GUIA = [
-  ['Lazer e cultura', [['Praça Brasil Japão', 2], ['Associação Atlética Botucatuense', 4], ['Largo São José', 4], ['Botucatu Tênis Clube', 5], ['Teatro Municipal', 6], ['Estação Ferroviária (museu)', 6], ['Catedral Sant’Ana', 7], ['Mirante da Serra (Curvão)', 10], ['Mirante de Rubião Júnior', 11]]],
-  ['Compras e mercados', [['Havan Botucatu', 2], ['Jaú Serve', 2], ['Confiança Supermercados', 4], ['Boulevard Center Cidade', 4], ['Supermercado Central', 4], ['Pão de Açúcar', 4], ['Shopping Amando', 5], ['Mercado Municipal', 5], ['Botucatu Shopping', 7], ['Atacadão', 9]]],
-  ['Gastronomia', [['La Madeleine Padaria e Café', 3], ['Casa de Pedra', 4], ['Vila Itália', 4], ['Pizzaria Mão na Roda', 4], ['Habib’s', 4], ['McDonald’s', 5], ['Naturale Sorveteria', 5]]],
-  ['Educação', [['UniCesumar Botucatu', 2], ['UNINOVE Botucatu', 2], ['Colégio Tyto Alba', 4], ['Colégio La Salle', 4], ['ETEC Domingos Minicucci', 5], ['Colégio Liceu Anglo', 5], ['SENAC Botucatu', 6], ['UNESP', 8], ['Fatec Botucatu', 10]]],
-  ['Saúde', [['Saúde Farma Pharmacia', 1], ['Hospital Unimed', 2], ['Policlínica Cecap', 2], ['Pronto Socorro Municipal', 2], ['Drogaria São Paulo', 4], ['Farmácia Drogal', 4], ['Drogasil', 5], ['AME Botucatu', 7], ['Hospital Sorocabana', 7], ['Hospital Estadual (HEBO)', 10]]],
-  ['Mobilidade e serviços', [['Av. Vital Brasil', 2], ['Av. Dom Lúcio', 2], ['Rod. Mal. Rondon', 3], ['Posto Esso', 3], ['Caixa Econômica Federal', 4], ['Bluefit Academia', 5], ['Terminal Rodoviário', 6], ['Banco do Brasil', 6]]],
-];
-const CAR_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 13l2-5.5A2 2 0 0 1 6.9 6h10.2a2 2 0 0 1 1.9 1.5L21 13v4a1 1 0 0 1-1 1h-1.5M3 13v4a1 1 0 0 0 1 1h1.5M3 13h18M8.5 18h7"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>';
-
-function initGuia() {
-  const tabs = document.getElementById('guiaTabs');
-  const lista = document.getElementById('guiaLista');
-  if (!tabs || !lista) return;
-  const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
-
-  tabs.innerHTML = GUIA.map(([t], i) =>
-    `<button type="button" class="guia__tab" role="tab" id="guiaTab${i}" aria-selected="false" data-i="${i}">${esc(t)}</button>`).join('');
-
-  const render = (i) => {
-    tabs.querySelectorAll('.guia__tab').forEach((b, j) => {
-      b.classList.toggle('is-active', j === i);
-      b.setAttribute('aria-selected', j === i);
-    });
-    lista.setAttribute('aria-labelledby', `guiaTab${i}`);
-    lista.innerHTML = GUIA[i][1].map(([nome, min]) =>
-      `<li><span>${esc(nome)}</span><span class="guia__tempo">${CAR_SVG}<b>${min}</b>min</span></li>`).join('');
-    lista.style.animation = 'none'; void lista.offsetWidth; lista.style.animation = '';
-  };
-
-  tabs.addEventListener('click', (e) => {
-    const b = e.target.closest('.guia__tab');
-    if (b) render(+b.dataset.i);
-  });
-  render(0);
 }
 
 /* ---------- Plantas ---------- */
