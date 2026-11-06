@@ -36,7 +36,8 @@
   --f-area: 'Area Normal', 'Figtree', Arial, sans-serif;
   --f-lato: 'Lato', 'Figtree', Arial, sans-serif;
 
-  --u: min(calc(100vw / 1920), 1px);
+  --z: 1; /* escala geral em notebooks (ver media queries abaixo) */
+  --u: min(calc(100vw / 1920 / var(--z)), 1px);
   --container: 1312px;
   --gutter: 24px;
   --header-h: 119px;
@@ -625,6 +626,12 @@ section { position: relative; }
 /* =========================================================
    RESPONSIVO
    ========================================================= */
+
+/* Notebook: reduz a escala da página toda (fontes, blocos e espaçamentos) */
+@media (min-width: 1025px) and (max-width: 1700px) { :root { --z: .9; } }
+@media (min-width: 1025px) and (max-width: 1500px) { :root { --z: .82; } }
+@media (min-width: 1025px) and (max-width: 1300px) { :root { --z: .76; } }
+@media (min-width: 1025px) { .header, .page, .footer { zoom: var(--z); } }
 
 /* Notebook (até 1440) — header mais compacto */
 @media (max-width: 1440px) {
