@@ -1,0 +1,5 @@
+_originais-figma/
+*.zip
+_*test*.html
+.DS_Store
+Thumbs.db
